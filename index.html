@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a10">
+  <meta name="description" content="NEXUS VCT — VALORANT Champions canlı skor, fikstür, haberler, takımlar ve topluluk tahminleri.">
+  <title>NEXUS VCT — VALORANT Champions Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="bg-orbit orbit-a"></div>
+  <div class="bg-orbit orbit-b"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="NEXUS VCT ana sayfa">
+      <span class="brand-mark">N</span>
+      <span>
+        <strong>NEXUS</strong>
+        <small>VCT HUB</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="Ana navigasyon">
+      <a href="#live">Canlı</a>
+      <a href="#matches">Maçlar</a>
+      <a href="#teams">Takımlar</a>
+      <a href="#players">Oyuncular</a>
+      <a href="#news">Haberler</a>
+      <a href="#predictions">Tahminler</a>
+    </nav>
+
+    <div class="top-actions">
+      <button id="themeBtn" class="icon-btn" title="Tema" aria-label="Tema değiştir">◐</button>
+      <button id="loginBtn" class="ghost-btn">Giriş Yap</button>
+      <button id="registerBtn" class="primary-btn">Kayıt Ol</button>
+      <button id="profileBtn" class="profile-btn hidden">
+        <span class="avatar" id="profileAvatar">NX</span>
+        <span id="profileName">Profil</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse-dot"></span> CHAMPIONS SHANGHAI • 24 EYLÜL — 18 EKİM 2026</div>
+        <h1>VALORANT’ın<br><span>nabzını</span> kaçırma.</h1>
+        <p>Canlı skor akışı, maç merkezi, turnuva takvimi, takım ve oyuncu keşfi, haberler ve tamamen ücretsiz topluluk tahminleri tek merkezde.</p>
+        <div class="hero-ctas">
+          <a class="primary-btn large" href="#live">Canlı Merkezi Aç</a>
+          <a class="secondary-btn large" href="#predictions">Tahmin Puanlarını Gör</a>
+        </div>
+        <div class="hero-meta">
+          <div><b>16</b><span>Champions takımı</span></div>
+          <div><b>24/7</b><span>maç & haber takibi</span></div>
+          <div><b>∞</b><span>topluluk tahmini</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="champions-ring">
+          <div class="ring-inner">
+            <div class="champ-badge">VCT</div>
+            <strong>CHAMPIONS</strong>
+            <span>SHANGHAI 2026</span>
+          </div>
+        </div>
+        <div class="floating-card f1">
+          <span class="mini-live"><i></i> LIVE ENGINE</span>
+          <strong>01s</strong>
+          <small>veri yenileme</small>
+        </div>
+        <div class="floating-card f2">
+          <span class="tiny-label">NEXT MATCH</span>
+          <strong>TL <em>vs</em> PRX</strong>
+          <small>24 Eyl • 09:00 TSİ</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="ticker">
+      <div class="ticker-label">BREAKING</div>
+      <div class="ticker-track">
+        <span>Champions Shanghai 24 Eylül’de başlıyor.</span>
+        <span>Resmî VCT takvimine göre grup aşamasının açılışında TL vs PRX ve TYL vs G2 var.</span>
+        <span>Tahmin puanları sadece site içi topluluk puanıdır; nakit/para karşılığı yoktur.</span>
+      </div>
+    </section>
+
+    <section id="live" class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">LIVE CENTER</span>
+          <h2>Maç ekranı</h2>
+        </div>
+        <div class="section-tools">
+          <span class="live-status"><i></i> Sunucu bağlantısı <b id="liveConn">hazırlanıyor</b></span>
+          <button id="demoLiveBtn" class="secondary-btn small">Demo canlı modu</button>
+        </div>
+      </div>
+
+      <div id="liveEmpty" class="empty-state">
+        <div class="empty-icon">◉</div>
+        <h3>Şu an canlı Champions maçı yok</h3>
+        <p>Turnuva başlamadan önce bir sonraki maç için geri sayım burada görünür. “Demo canlı modu” gerçek canlı veri sağlayıcısı bağlanmadan ekranı test etmek için vardır.</p>
+      </div>
+
+      <div id="liveMatchCard" class="live-card hidden"></div>
+    </section>
+
+    <section id="matches" class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">SCHEDULE</span>
+          <h2>Yaklaşan maçlar</h2>
+        </div>
+        <div class="filter-row">
+          <button class="filter active" data-filter="all">Tümü</button>
+          <button class="filter" data-filter="today">Bugün</button>
+          <button class="filter" data-filter="upcoming">Yaklaşan</button>
+        </div>
+      </div>
+      <div id="matchGrid" class="match-grid"></div>
+    </section>
+
+    <section id="teams" class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">TEAMS</span>
+          <h2>Champions sahnesi</h2>
+        </div>
+        <input id="teamSearch" class="search-input" placeholder="Takım ara…">
+      </div>
+      <div id="teamGrid" class="team-grid"></div>
+    </section>
+
+    <section id="players" class="section split-section">
+      <div>
+        <div class="section-head compact">
+          <div>
+            <span class="section-kicker">ROSTERS</span>
+            <h2>Oyuncu & koç merkezi</h2>
+          </div>
+        </div>
+        <p class="muted-copy">Kadro, oyuncu ve koç bilgileri veri sağlayıcısından otomatik çekilecek şekilde hazırlandı. Böylece transfer ve kadro değişikliklerinde siteyi elle güncellemek gerekmez.</p>
+        <div id="playerGrid" class="player-grid"></div>
+      </div>
+
+      <aside class="data-card">
+        <span class="section-kicker">DATA ENGINE</span>
+        <h3>Veri mimarisi</h3>
+        <div class="engine-line"><span>Fixtures</span><b>REST / JSON</b></div>
+        <div class="engine-line"><span>Live scoreboard</span><b>SSE / WS</b></div>
+        <div class="engine-line"><span>Rosters</span><b>API sync</b></div>
+        <div class="engine-line"><span>News</span><b>Official feed</b></div>
+        <div class="engine-line"><span>Auth</span><b>SQLite + HTTP-only cookie</b></div>
+        <div class="engine-note">Gerçek saniye-saniye oyun içi skor için ayrıca lisanslı/gerçek zamanlı bir VALORANT esports veri akışı gerekir. Sunucu buna özel adapter ile bağlanabilir.</div>
+      </aside>
+    </section>
+
+    <section id="predictions" class="section prediction-section">
+      <div class="prediction-main">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">COMMUNITY PICKS</span>
+            <h2>Tahminlerini kilitle</h2>
+          </div>
+          <div class="score-pill"><span id="pointsValue">0</span> puan</div>
+        </div>
+
+        <div class="prediction-banner">
+          <div>
+            <span class="mini-tag">SİTE İÇİ PUAN</span>
+            <h3>Tahmin et • puan kazan • koleksiyonunu büyüt</h3>
+            <p>Her doğru tahmin sana site içi puan kazandırır. Puanlar turnuva sonunda profil rozetleri, seviye ve topluluk sıralaması gibi site içi özelliklerde kullanılmak üzere tasarlanmıştır.</p>
+          </div>
+          <div class="rank-orb">#<span id="rankValue">—</span></div>
+        </div>
+
+        <div id="predictionList" class="prediction-list"></div>
+      </div>
+
+      <aside class="leaderboard-card">
+        <div class="section-head compact">
+          <div>
+            <span class="section-kicker">LEADERBOARD</span>
+            <h3>Topluluk</h3>
+          </div>
+          <span class="mini-tag">HAFTALIK</span>
+        </div>
+        <div id="leaderboard"></div>
+      </aside>
+    </section>
+
+    <section id="news" class="section">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">NEWSROOM</span>
+          <h2>VCT dünyasından son haberler</h2>
+        </div>
+        <a class="text-link" href="https://valorantesports.com/tr-TR/news" target="_blank" rel="noopener">Resmî haber merkezi ↗</a>
+      </div>
+      <div id="newsGrid" class="news-grid"></div>
+    </section>
+
+    <section class="watch-section">
+      <div>
+        <span class="section-kicker">WATCH</span>
+        <h2>Maçları nereden izleyebilirim?</h2>
+        <p>Resmî VCT yayınlarını YouTube ve Twitch üzerinden takip etmek için aşağıdaki bağlantıları kullanabilirsin. Maç başladıktan sonra “İzle” butonu da görünür.</p>
+      </div>
+      <div class="watch-buttons">
+        <a class="watch-btn youtube" href="https://www.youtube.com/@valorantesports" target="_blank" rel="noopener">▶ YouTube</a>
+        <a class="watch-btn twitch" href="https://www.twitch.tv/valorant" target="_blank" rel="noopener">◉ Twitch</a>
+        <a class="watch-btn official" href="https://valorantesports.com/" target="_blank" rel="noopener">VCT Resmî Site ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <a class="brand footer-brand" href="#top"><span class="brand-mark">N</span><span><strong>NEXUS</strong><small>VCT HUB</small></span></a>
+      <p>Topluluk odaklı VALORANT esports takip arayüzü.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#matches">Maçlar</a><a href="#teams">Takımlar</a><a href="#news">Haberler</a><a href="#predictions">Tahminler</a>
+    </div>
+    <div class="footer-note">VALORANT ve Riot Games ilgili sahiplerine aittir. NEXUS VCT bağımsız hayran projesi olarak tasarlanmıştır.</div>
+  </footer>
+
+  <div id="authModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card auth-card">
+      <button class="modal-close" data-close-modal aria-label="Kapat">×</button>
+      <div class="auth-top">
+        <span class="mini-tag">NEXUS ACCOUNT</span>
+        <h2 id="authTitle">NEXUS’a hoş geldin</h2>
+        <p id="authSubtitle">Tahminlerini kaydetmek ve puanlarını takip etmek için giriş yap.</p>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth-tab="login">Giriş</button>
+        <button class="auth-tab" data-auth-tab="register">Kayıt</button>
+      </div>
+      <form id="authForm">
+        <label> E-posta <input name="email" type="email" autocomplete="email" required placeholder="ornek@mail.com"></label>
+        <label id="nameField" class="hidden"> Kullanıcı adı <input name="name" autocomplete="nickname" placeholder="NexusFan"></label>
+        <label> Şifre <input name="password" type="password" autocomplete="current-password" required minlength="8" placeholder="••••••••"></label>
+        <label class="check-row"><input id="rememberMe" type="checkbox"> <span>Beni hatırla</span></label>
+        <button class="primary-btn wide" type="submit" id="authSubmit">Giriş Yap</button>
+      </form>
+      <div id="authMessage" class="form-message"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>window.APP_CONFIG = { apiBase: "" };</script>
+  <script src="app.js" defer></script>
+</body>
+</html>
