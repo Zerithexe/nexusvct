@@ -1,0 +1,5 @@
+window.APP_CONFIG = {
+  // GitHub Pages frontend + ayrı Node backend kullanırsan:
+  // apiBase: "https://senin-backend-adresin.example.com"
+  apiBase: ""
+};
